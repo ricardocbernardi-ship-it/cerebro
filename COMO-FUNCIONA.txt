@@ -1,0 +1,104 @@
+╔══════════════════════════════════════════════════════════════╗
+║          CEREBRO — Blockchain Educacional estilo Bitcoin     ║
+╚══════════════════════════════════════════════════════════════╝
+
+⚠️  AVISO IMPORTANTE
+Esta NÃO é a rede Bitcoin de verdade. É uma blockchain própria,
+roda só no seu computador, dentro da pasta "dados\blockchain.json".
+As moedas "CEREBRO" não têm valor real, não podem ser vendidas em
+nenhuma exchange e não existem fora deste PC/rede local. É um
+projeto para aprender, passo a passo, como o Bitcoin funciona
+por dentro — incluindo o modelo de escassez dele.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  O QUE TEM AQUI IGUAL AO BITCOIN DE VERDADE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. CARTEIRAS COM CHAVE PÚBLICA/PRIVADA
+   Mesma curva criptográfica do Bitcoin real (secp256k1).
+   A chave privada assina transações; a pública é o "endereço".
+
+2. BLOCOS ENCADEADOS POR HASH (SHA-256)
+   Cada bloco guarda o hash do bloco anterior — se alguém mexer
+   em um bloco antigo, todos os hashes depois dele quebram.
+
+3. PROOF OF WORK (MINERAÇÃO)
+   Para adicionar um bloco, o computador precisa achar um "nonce"
+   que faça o hash do bloco começar com vários zeros. Isso exige
+   testar milhões de combinações — por isso mineração consome
+   energia/tempo de CPU, igual no Bitcoin real.
+
+4. RECOMPENSA DE MINERAÇÃO COM HALVING E LIMITE MÁXIMO
+   Quem minera o bloco recebe moedas novas, do nada — é assim que
+   novas moedas entram em circulação, igual Bitcoin. A recompensa
+   começa em 50 CEREBRO e CAI PELA METADE a cada 10 blocos minerados
+   (no Bitcoin real: a cada 210.000 blocos, ~4 anos). O supply total
+   tem um teto de 21.000.000 CEREBRO — depois disso, mineração só
+   confirma transações, sem criar moeda nova. Mesmo modelo de
+   escassez programada do Bitcoin.
+
+5. TRANSAÇÕES ASSINADAS DIGITALMENTE
+   Só quem tem a chave privada pode gastar o saldo da carteira.
+   A rede confere a assinatura antes de aceitar a transação.
+
+6. VALIDAÇÃO DA CADEIA
+   Script que percorre todos os blocos conferindo hashes e
+   assinaturas — detecta qualquer adulteração.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  REDE P2P — VÁRIOS NÓS, IGUAL UMA BLOCKCHAIN DE VERDADE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Além do modo "1 arquivo local" (passos 1-6 acima), dá pra rodar
+VÁRIOS NÓS que conversam entre si pela rede, igual Bitcoin/Ethereum/
+Solana fazem por baixo dos panos:
+
+- Cada nó tem seu próprio servidor (WebSocket) e se conecta a peers
+- Quando um nó minera um bloco, ele TRANSMITE pra todos os peers
+- Cada nó que recebe valida o bloco (hash, assinaturas) antes de aceitar
+- Se duas cadeias divergem, a REGRA é: cadeia mais longa válida vence
+  (mesma regra de consenso do Bitcoin — "Nakamoto consensus")
+
+COMO TESTAR (2 nós no mesmo PC):
+1. Abra 7-NO-A.bat   → sobe o nó A na porta 3001
+2. Abra 8-NO-B.bat   → sobe o nó B na porta 3002 e conecta no A
+3. Na janela do NÓ B, digite: minerar 0
+   → o bloco é minerado E transmitido pro Nó A automaticamente
+4. Na janela do NÓ B ou A, digite: saldo
+   → os dois nós mostram o mesmo saldo, pois sincronizaram
+
+Comandos dentro de cada nó: minerar <idx> | saldo | enviar <de> <para> <qtd> | peers | sair
+
+Pra conectar de OUTRO COMPUTADOR na mesma rede, troque "localhost"
+pelo IP da máquina que está rodando o NÓ A (ex: ws://192.168.0.10:3001).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  O QUE É DIFERENTE DO BITCOIN REAL (simplificações)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Halving a cada 10 blocos (Bitcoin real: a cada 210.000 blocos)
+- Sem ajuste automático de dificuldade (fixa em 4 zeros)
+- Sem UTXO (usa modelo de saldo por conta, mais simples)
+- Sem mempool real, sem taxas de transação
+- Sem milhares de nós espalhados pelo mundo garantindo segurança —
+  por isso não tem valor real fora do seu PC/rede local
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PASSO A PASSO PARA USAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. INSTALAR.bat              → instala as dependências (1x só)
+2. 1-CRIAR-CARTEIRA.bat      → crie 2 carteiras (rode 2x)
+3. 2-MINERAR.bat             → minere um bloco (carteira [0] ganha 50 CEREBRO)
+4. 4-SALDO.bat               → veja o saldo de cada carteira
+5. 3-ENVIAR.bat              → envie moedas da carteira [0] pra [1]
+6. 2-MINERAR.bat             → minere de novo para confirmar a transação
+7. 4-SALDO.bat               → veja os saldos atualizados
+8. 5-VER-BLOCKCHAIN.bat      → veja todos os blocos e transações
+9. 6-VALIDAR.bat             → confirme que a cadeia está íntegra
+
+Para mudar quem envia/recebe e a quantia, edite o topo de
+scripts/3-enviar-moedas.js (INDICE_REMETENTE, INDICE_DESTINATARIO, QUANTIA).
+
+Para mudar quem recebe a recompensa de mineração, edite o topo
+de scripts/2-minerar-bloco.js (INDICE_CARTEIRA).
