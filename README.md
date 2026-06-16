@@ -17,6 +17,18 @@ Blockchain educacional própria, com a mesma estrutura técnica de fundo do Bitc
 - **Transações assinadas digitalmente** — validadas antes de entrar num bloco
 - **Rede P2P** — múltiplos nós conectam via WebSocket, sincronizam blocos e transações, com consenso por "cadeia mais longa válida vence" (Nakamoto consensus)
 
+## Quer minerar com a gente?
+
+Existe um nó semente público rodando agora. Conecte o seu nó nele pra entrar na mesma rede e minerar a mesma cadeia que outras pessoas:
+
+```
+node scripts/7-iniciar-no.js 3001 wss://plugin-marvel-homepage-biblical.trycloudflare.com
+```
+
+Depois, dentro do seu nó, digite `minerar` — o bloco é transmitido pra todo mundo conectado automaticamente.
+
+> ⚠️ Esse endereço é um túnel temporário (Cloudflare Quick Tunnel) — só funciona enquanto o nó semente estiver rodando. Se não conectar, é porque ele está offline no momento.
+
 ## Como rodar
 
 ```
