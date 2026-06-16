@@ -1,6 +1,10 @@
 # CEREBRO
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 Blockchain educacional própria, com a mesma estrutura técnica de fundo do Bitcoin: proof-of-work, halving, carteiras com assinatura digital (secp256k1) e rede P2P entre nós.
+
+🌐 **Site:** https://ricardocbernardi-ship-it.github.io/cerebro/
 
 > ⚠️ **Sem valor real.** Não é um token, não está em nenhuma exchange, não existe fora de onde você rodar. É um projeto para aprender como o Bitcoin funciona por dentro.
 
